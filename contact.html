@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Sharing Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 10px 0;
+            width: 200px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            max-width: 300px;
+            word-wrap: break-word;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input, textarea {
+            margin: 5px 0;
+            padding: 5px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <button id="shareContact">Share a Contact (iOS)</button>
+    <button id="uploadContact">Upload Contact File</button>
+    <button id="manualEntry">Enter Contact Manually</button>
+    <input type="file" id="fileInput" accept=".vcf,text/vcard" style="display: none;">
+    <form id="contactForm" style="display: none;">
+        <input type="text" id="name" placeholder="Name">
+        <input type="email" id="email" placeholder="Email">
+        <input type="tel" id="phone" placeholder="Phone">
+        <textarea id="address" placeholder="Address"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        const resultDiv = document.getElementById('result');
+
+        // iOS Share option
+        document.getElementById('shareContact').addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Share Contact',
+                    text: 'Please select a contact to share.',
+                    url: 'mailto:?subject=Shared Contact'
+                }).then(() => {
+                    resultDiv.textContent = 'Contact shared successfully!';
+                }).catch((error) => {
+                    resultDiv.textContent = 'Error sharing contact: ' + error;
+                });
+            } else {
+                resultDiv.textContent = 'Web Share API is not supported. Please use another option.';
+            }
+        });
+
+        // File upload option
+        const fileInput = document.getElementById('fileInput');
+        document.getElementById('uploadContact').addEventListener('click', () => {
+            fileInput.click();
+        });
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                resultDiv.textContent = `File selected: ${file.name}`;
+                // Here you would typically send this file to a server for processing
+            }
+        });
+
+        // Manual entry option
+        const contactForm = document.getElementById('contactForm');
+        document.getElementById('manualEntry').addEventListener('click', () => {
+            contactForm.style.display = contactForm.style.display === 'none' ? 'flex' : 'none';
+        });
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            resultDiv.textContent = `Contact entered: ${name}, ${email}, ${phone}, ${address}`;
+            // Here you would typically send this data to a server or process it as needed
+        });
+    </script>
+</body>
+</html>
