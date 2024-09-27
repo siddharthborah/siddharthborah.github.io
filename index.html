@@ -3,34 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Siddharth's Number Guessing Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
         }
+        .game-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
         h1 {
-            font-size: 3rem;
             color: #333;
         }
-        a {
-            margin-top: 20px;
-            color: #0066cc;
-            text-decoration: none;
+        input {
+            padding: 5px;
+            font-size: 16px;
+            width: 100px;
         }
-        a:hover {
-            text-decoration: underline;
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #attempts {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <a href="about.html">About Us</a>
+    <div class="game-container">
+        <h1>Guess the Number!</h1>
+        <p>I'm thinking of a number between 1 and 100. Can you guess it?</p>
+        <input type="number" id="guess" min="1" max="100">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <p id="message"></p>
+        <p id="attempts"></p>
+    </div>
+
+    <script>
+        let targetNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            let guess = document.getElementById('guess').value;
+            attempts++;
+
+            if (guess == targetNumber) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').textContent = `Congratulations! You guessed the number in ${attempts} attempts!`;
+                document.getElementById('attempts').textContent = `The number was ${targetNumber}. Click the button to play again!`;
+                document.querySelector('button').textContent = 'Play Again';
+                document.querySelector('button').onclick = resetGame;
+            } else if (guess < targetNumber) {
+                document.getElementById('message').style.color = 'blue';
+                document.getElementById('message').textContent = 'Too low! Try a higher number.';
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').textContent = 'Too high! Try a lower number.';
+            }
+
+            document.getElementById('attempts').textContent = `Attempts: ${attempts}`;
+        }
+
+        function resetGame() {
+            targetNumber = Math.floor(Math.random() * 100) + 1;
+            attempts = 0;
+            document.getElementById('guess').value = '';
+            document.getElementById('message').textContent = '';
+            document.getElementById('attempts').textContent = '';
+            document.querySelector('button').textContent = 'Submit Guess';
+            document.querySelector('button').onclick = checkGuess;
+        }
+    </script>
 </body>
 </html>
