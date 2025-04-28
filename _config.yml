@@ -24,7 +24,7 @@ description: >-
   Personal blog of Siddharth Borah, sharing thoughts on technology, software development, and life.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://siddharthborah.github.io" # the base hostname & protocol for your site
-twitter_username: siddharthborah
+linkedin_username: siddharthborah
 github_username: siddharthborah
 
 # Build settings
