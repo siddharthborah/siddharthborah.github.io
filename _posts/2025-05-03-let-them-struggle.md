@@ -3,6 +3,9 @@ layout: post
 title:  "Let Them Struggle: How Pain Creates Better Engineers"
 date:   2025-05-03 10:00:00 +0530
 categories: engineering leadership
+tags: [engineering, leadership, onboarding, learning, software development, career growth]
+description: "Discover why embracing controlled struggle in engineering onboarding creates more resilient and knowledgeable engineers. Learn how pain and challenges can be powerful teaching tools in software development."
+excerpt: "When we onboard new engineers, we usually begin by explaining how the system works. We show them diagrams, talk through slides, point to code snippets, and patiently answer their questions. Yet, weeks later, these same engineers often seem lost. They remember vague outlines but miss crucial subtleties. Why?"
 ---
 
 When we onboard new engineers, we usually begin by explaining how the system works. We show them diagrams, talk through slides, point to code snippets, and patiently answer their questions. Yet, weeks later, these same engineers often seem lost. They remember vague outlines but miss crucial subtleties. Why?
