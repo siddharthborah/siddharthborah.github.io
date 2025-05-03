@@ -13,10 +13,10 @@ Pain might seem like an odd teaching tool, but it's remarkably effective. Think 
 
 This isn't accidental. Our brains evolved to retain information strongly associated with pain or struggle because, historically, survival depended on avoiding past dangers. In software engineering, survival might not be literal, but it translates directly into reliable systems and the ability to prevent costly failures.
 
-Yet, when we shield new hires from real-world struggles—offering only sanitized, neatly-packaged knowledge—they miss out on deep learning. They've seen diagrams of software working flawlessly but haven't felt the urgency and confusion of troubleshooting live issues. Abstract explanations lack emotional impact.
+Yet, when we shield new hires from real-world struggles—offering only sanitized, neatly-packaged knowledge—they miss out on deep learning. They've seen diagrams of software working flawlessly but haven't felt the urgency and confusion of troubleshooting live issues. Without experiencing that pain, their understanding remains shallow.
 
 A better approach is to integrate controlled, practical challenges directly into onboarding. Instead of reading the entire codebase or passively observing operations, new engineers could be added to on-call rotations, guided through real support tickets, or given actual bugs to resolve. These tasks are tangible, manageable forms of discomfort. They force the engineer to engage actively and deeply with the system, quickly embedding nuanced understanding that would otherwise take months to acquire.
 
 It might seem counterintuitive; instinctively, we prefer to protect newcomers from difficulty, believing ease will promote learning. But comfort often breeds forgetfulness. Struggle, when thoughtfully managed, is the most memorable teacher of all.The best onboarding isn't painless; it deliberately includes manageable difficulty to produce resilient, deeply knowledgeable engineers. 
 
-If we want our new engineers to grasp the subtleties of our products truly, perhaps we should stop shielding them from struggle, and instead thoughtfully leverage it as our most powerful learning tool. 
+If we want our new engineers to grasp the subtleties of our products truly, perhaps we should stop shielding them from struggle and the pain that comes from it, and instead thoughtfully leverage it as our most powerful learning tool. 
