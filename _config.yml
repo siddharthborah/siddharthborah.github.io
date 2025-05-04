@@ -33,6 +33,9 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+# Google Analytics
+google_analytics: G-ZPXVBZ5SJB
+
 # Exclude from processing
 exclude:
   - .sass-cache/
