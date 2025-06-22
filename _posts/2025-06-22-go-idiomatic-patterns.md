@@ -498,4 +498,73 @@ func HandleValue(v interface{}) {
 }
 ```
 
+## 13. Non-Blocking Channel Operations
+
+**Purpose**: Avoid blocking when sending to channels using select with default
+
+```go
+// Non-blocking send to avoid blocking goroutines
+func NonBlockingSend(ch chan<- int, value int) error {
+    select {
+    case ch <- value:
+        // Success - channel accepted the value
+        return nil
+    default:
+        // Channel is full/blocked - return immediately
+        return errors.New("would block")
+    }
+}
+
+// Non-blocking job submission pattern
+// Prefer to use a channel of size 1 to avoid lost events
+func SubmitJob(workChan chan<- Job, job Job) bool {
+    select {
+    case workChan <- job:
+        // Job submitted successfully
+        return true
+    default:
+        // All workers busy, handle overflow
+        log.Printf("Workers busy, dropping job %d", job.ID)
+        return false
+    }
+}
+
+// Non-blocking receive
+func NonBlockingReceive(ch <-chan int) (int, bool) {
+    select {
+    case value := <-ch:
+        // Successfully received value
+        return value, true
+    default:
+        // No value available
+        return 0, false
+    }
+}
+
+// Producer with overflow handling
+func ProducerWithOverflow(workChan chan<- Job, overflowChan chan<- Job) {
+    job := Job{ID: 1, Data: "work"}
+    
+    select {
+    case workChan <- job:
+        // Normal processing
+    case overflowChan <- job:
+        // Overflow queue
+    default:
+        // Both channels full, log and drop
+        log.Printf("System overloaded, dropping job %d", job.ID)
+    }
+}
+
+// Timeout pattern with non-blocking operations
+func ProcessWithTimeout(workChan chan<- Job, job Job, timeout time.Duration) error {
+    select {
+    case workChan <- job:
+        return nil
+    case <-time.After(timeout):
+        return errors.New("timeout waiting to submit job")
+    }
+}
+```
+
 These patterns represent some of the most common and useful Go idioms that you'll encounter in well-written Go code. Each serves a specific purpose and helps make code more maintainable, readable, and robust.
